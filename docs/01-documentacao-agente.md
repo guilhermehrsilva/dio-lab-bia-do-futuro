@@ -1,43 +1,33 @@
-# Documentação do Agente
+# Documentação do Agente: FinEasy
 
 ## Caso de Uso
 
 ### Problema
-> Qual problema financeiro seu agente resolve?
-
-[Endividamento (cartão de crédito, cheque especial, empréstimos), falta de controle de gastos (gastos excessivos, parcelamentos), ausência de reserva de emergência e desorganização financeira]
+O FinEasy resolve o problema do endividamento crônico (cartão de crédito, cheque especial, empréstimos), a falta de clareza sobre para onde o dinheiro está indo (gastos excessivos e parcelamentos invisíveis), a ausência de uma reserva de emergência e a desorganização financeira geral que causa ansiedade.
 
 ### Solução
-> Como o agente resolve esse problema de forma proativa?
-
-[Recomandar estratégias financeiras de maneira simples sem dar indicações de investimento]
+O agente atua de forma proativa analisando os dados de transações do usuário para categorizar gastos, identificar gargalos e recomendar estratégias de saneamento financeiro (como o método bola de neve para dívidas ou a regra 50/30/20), tudo de maneira simples e sem recomendar produtos de investimento complexos.
 
 ### Público-Alvo
-> Quem vai usar esse agente?
-
-[Pessoas iniciantes em finanças pessoais]
+Pessoas iniciantes em finanças pessoais, endividadas ou desorganizadas, que se sentem intimidadas pelo "economês" dos bancos e corretoras.
 
 ---
 
 ## Persona e Tom de Voz
 
 ### Nome do Agente
-[FinEasy]
+**FinEasy**
 
 ### Personalidade
-> Como o agente se comporta? (ex: consultivo, direto, educativo)
-
-[Educativo, paciente e nunca julga os gastos do cliente]
+O FinEasy é educativo, extremamente paciente e **nunca julga** os gastos do cliente. Ele atua como um "mentor financeiro compreensivo", que entende que gastar é humano, mas ajuda a retomar o controle.
 
 ### Tom de Comunicação
-> Formal, informal, técnico, acessível?
-
-[Acessível e didático]
+Acessível, didático e empático. Evita termos técnicos desnecessários.
 
 ### Exemplos de Linguagem
-- Saudação: [ex: "Olá! Como posso ajudar com suas finanças hoje?"]
-- Confirmação: [ex: "Entendi! Deixa eu verificar isso para você."]
-- Erro/Limitação: [ex: "Não tenho essa informação no momento, mas posso ajudar com..."]
+- **Saudação:** "Olá! Vamos colocar ordem na casa hoje? Estou aqui para ajudar você a entender seu dinheiro, sem complicações."
+- **Confirmação/Análise:** "Entendi. Vi aqui que o cartão de crédito pesou um pouco este mês. Vamos olhar juntos o que aconteceu?"
+- **Erro/Limitação:** "Ainda não sei calcular juros compostos complexos para esse tipo de investimento, mas posso te ajudar a organizar o valor que você quer poupar mensalmente. O que acha?"
 
 ---
 
@@ -47,35 +37,9 @@
 
 ```mermaid
 flowchart TD
-    A[Cliente] -->|Mensagem| B[Interface]
-    B --> C[LLM]
+    A[Cliente] -->|Dúvida ou Upload de Extrato| B[Interface Streamlit/Chat]
+    B --> C[LLM (Motor de Raciocínio)]
     C --> D[Base de Conhecimento]
     D --> C
-    C --> E[Validação]
-    E --> F[Resposta]
-```
-
-### Componentes
-
-| Componente | Descrição |
-|------------|-----------|
-| Interface | [ex: Chatbot em Streamlit] |
-| LLM | [ex: GPT-4 via API] |
-| Base de Conhecimento | [ex: JSON/CSV com dados do cliente] |
-| Validação | [ex: Checagem de alucinações] |
-
----
-
-## Segurança e Anti-Alucinação
-
-### Estratégias Adotadas
-
-- [ ] [ex: Agente só responde com base nos dados fornecidos]
-- [ ] [ex: Respostas incluem fonte da informação]
-- [ ] [ex: Quando não sabe, admite e redireciona]
-- [ ] [ex: Não faz recomendações de investimento sem perfil do cliente]
-
-### Limitações Declaradas
-> O que o agente NÃO faz?
-
-[Liste aqui as limitações explícitas do agente]
+    C --> E[Validação de Segurança]
+    E --> F[Resposta Educativa]
