@@ -38,8 +38,8 @@ Acessível, didático e empático. Evita termos técnicos desnecessários.
 ```mermaid
 flowchart TD
     A[Cliente] -->|Dúvida ou Upload de Extrato| B[Interface Streamlit/Chat]
-    B --> C[LLM (Motor de Raciocínio)]
-    C --> D[Base de Conhecimento]
-    D --> C
+    B --> C[LLM - Motor de Raciocínio]
+    C <--> D[Base de Conhecimento]
     C --> E[Validação de Segurança]
     E --> F[Resposta Educativa]
+    F --> B
