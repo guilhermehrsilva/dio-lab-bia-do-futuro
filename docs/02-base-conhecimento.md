@@ -58,13 +58,19 @@ with open('data/produtos_financeiros.json', 'r', encoding='utf-8') as f:
 > Mostre um exemplo de como os dados são formatados para o agente.
 
 ```
-Dados do Cliente:
-- Nome: João Silva
-- Perfil: Moderado
-- Saldo disponível: R$ 5.000
+=== DADOS DO USUÁRIO ===
+Nome: Ana Souza
+Situação Atual: Endividada (Cheque Especial)
+Renda Líquida: R$ 3.500,00
 
-Últimas transações:
-- 01/11: Supermercado - R$ 450
-- 03/11: Streaming - R$ 55
+=== RESUMO DO MÊS ATUAL ===
+Total Gasto: R$ 3.850,00 (Saldo: -R$ 350,00)
+Principais Ofensores:
+1. Alimentação/Delivery: R$ 1.200,00
+2. Assinaturas/Streaming: R$ 300,00
+3. Transporte app: R$ 450,00
+
+=== ÚLTIMA INTERAÇÃO ===
+Usuário prometeu reduzir delivery para R$ 600,00.
 ...
 ```
