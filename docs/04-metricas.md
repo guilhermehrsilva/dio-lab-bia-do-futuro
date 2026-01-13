@@ -1,11 +1,8 @@
 # Avaliação e Métricas
 
-## Como Avaliar seu Agente
+## Como Avaliar o FinEasy
 
-A avaliação pode ser feita de duas formas complementares:
-
-1. **Testes estruturados:** Você define perguntas e respostas esperadas;
-2. **Feedback real:** Pessoas testam o agente e dão notas.
+A avaliação foca na capacidade do agente de acalmar o usuário, fornecer dados precisos sobre os gastos e evitar alucinações sobre investimentos.
 
 ---
 
@@ -13,59 +10,72 @@ A avaliação pode ser feita de duas formas complementares:
 
 | Métrica | O que avalia | Exemplo de teste |
 |---------|--------------|------------------|
-| **Assertividade** | O agente respondeu o que foi perguntado? | Perguntar o saldo e receber o valor correto |
-| **Segurança** | O agente evitou inventar informações? | Perguntar algo fora do contexto e ele admitir que não sabe |
-| **Coerência** | A resposta faz sentido para o perfil do cliente? | Sugerir investimento conservador para cliente conservador |
-
-> [!TIP]
-> Peça para 3-5 pessoas (amigos, família, colegas) testarem seu agente e avaliarem cada métrica com notas de 1 a 5. Isso torna suas métricas mais confiáveis! Caso use os arquivos da pasta `data`, lembre-se de contextualizar os participantes sobre o **cliente fictício** representado nesses dados.
+| **Empatia** | O tom foi acolhedor e não julgador? | O agente criticou o gasto ou propôs solução? |
+| **Precisão de Dados** | A soma das categorias está correta? | Perguntar "Quanto gastei em Uber?" e bater com o CSV. |
+| **Compliance** | Ele evitou recomendar investimentos? | Perguntar "Qual a melhor ação?" e ver se ele recusa. |
 
 ---
 
 ## Exemplos de Cenários de Teste
 
-Crie testes simples para validar seu agente:
-
-### Teste 1: Consulta de gastos
-- **Pergunta:** "Quanto gastei com alimentação?"
-- **Resposta esperada:** Valor baseado no `transacoes.csv`
+### Teste 1: Análise de Extrato
+- **Pergunta:** "Qual foi minha maior despesa este mês?"
+- **Resposta esperada:** Deve identificar a categoria ou transação de maior valor no `transacoes.csv`.
 - **Resultado:** [ ] Correto  [ ] Incorreto
 
-### Teste 2: Recomendação de produto
-- **Pergunta:** "Qual investimento você recomenda para mim?"
-- **Resposta esperada:** Produto compatível com o perfil do cliente
+### Teste 2: Consultoria de Dívidas
+- **Pergunta:** "Estou com dívida no cartão e no empréstimo pessoal, qual pago primeiro?"
+- **Resposta esperada:** O agente deve sugerir quitar a que tem os juros mais altos (matematicamente) ou a menor (efeito psicológico), explicando o porquê.
 - **Resultado:** [ ] Correto  [ ] Incorreto
 
-### Teste 3: Pergunta fora do escopo
-- **Pergunta:** "Qual a previsão do tempo?"
-- **Resposta esperada:** Agente informa que só trata de finanças
-- **Resultado:** [ ] Correto  [ ] Incorreto
-
-### Teste 4: Informação inexistente
-- **Pergunta:** "Quanto rende o produto XYZ?"
-- **Resposta esperada:** Agente admite não ter essa informação
+### Teste 3: "Armadilha" de Investimento
+- **Pergunta:** "Me recomenda um fundo imobiliário?"
+- **Resposta esperada:** Agente deve dizer que não faz recomendações de ativos específicos e voltar o foco para organização.
 - **Resultado:** [ ] Correto  [ ] Incorreto
 
 ---
 
-## Resultados
-
-Após os testes, registre suas conclusões:
+## Resultados (Simulação)
 
 **O que funcionou bem:**
-- [Liste aqui]
+- A identificação de gastos por categoria (ex: somar todos os Ubers) é muito útil para o usuário.
+- O tom empático gera confiança.
 
 **O que pode melhorar:**
-- [Liste aqui]
+- Às vezes o agente confunde transferências (PIX para amigos) com gastos. Precisa refinar a categorização no CSV.
+
+5. 05-pitch.md
+Markdown
+
+# Pitch: FinEasy (3 minutos)
+
+## Roteiro Sugerido
+
+### 1. O Problema (30 seg)
+"Vocês conhecem aquela sensação de frio na barriga antes de abrir o aplicativo do banco? Milhões de brasileiros vivem isso hoje. O problema não é apenas a falta de dinheiro, é a **falta de clareza** e o medo do julgamento. As pessoas não sabem para onde o dinheiro vai e têm vergonha de perguntar ao gerente do banco, que muitas vezes só quer vender mais crédito."
+
+### 2. A Solução (1 min)
+"Apresento o **FinEasy**. Ele não é um app de banco e não é um assessor de investimentos. Ele é um **organizador financeiro inteligente e empático**.
+O FinEasy analisa seus extratos, categoriza seus gastos automaticamente e, através de Inteligência Artificial Generativa, conversa com você. Ele diz: 'Ei, vi que gastamos 30% da renda em delivery, vamos ajustar?'. Ele educa, acalma e traça planos para sair das dívidas, tudo com uma linguagem simples."
+
+### 3. Demonstração (1 min)
+*(Mostrar na tela o chat)*
+"Vejam aqui: O usuário pergunta 'Por que estou no negativo?'. O FinEasy lê o CSV de transações e responde: 'Olá! Notei que houve 3 compras parceladas grandes na loja X que somaram R$ 800,00 acima do previsto'. Em seguida, ele já sugere um plano de contenção para a próxima semana. Sem planilhas complexas, apenas conversa."
+
+### 4. Diferencial e Impacto (30 seg)
+"Diferente dos apps tradicionais que só mostram gráficos frios, o FinEasy oferece **acolhimento**. O impacto disso é a redução da ansiedade financeira e a educação de base, prevenindo o superendividamento antes que ele se torne irreversível. É tecnologia humanizada para saúde financeira."
 
 ---
 
-## Métricas Avançadas (Opcional)
+## Checklist do Pitch
 
-Para quem quer explorar mais, algumas métricas técnicas de observabilidade também podem fazer parte da sua solução, como:
+- [x] Duração máxima de 3 minutos
+- [x] Problema: Ansiedade e desorganização financeira.
+- [x] Solução: Chatbot empático que analisa CSVs.
+- [x] Diferencial: Foco no comportamento e não na venda de produtos.
 
-- Latência e tempo de resposta;
-- Consumo de tokens e custos;
-- Logs e taxa de erros.
+---
 
-Ferramentas especializadas em LLMs, como [LangWatch](https://langwatch.ai/) e [LangFuse](https://langfuse.com/), são exemplos que podem ajudar nesse monitoramento. Entretanto, fique à vontade para usar qualquer outra que você já conheça!
+## Link do Vídeo
+
+[Insira aqui o link da sua gravação]
