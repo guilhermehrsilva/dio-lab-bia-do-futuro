@@ -1,149 +1,65 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# 💰 FinEasy: Seu Mentor Financeiro Inteligente
 
-## Contexto
-
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
-
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
-
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+O **FinEasy** é um assistente financeiro pessoal especializado em organização financeira, controle de gastos e estratégias práticas para sair das dívidas. Diferente de ferramentas tradicionais, ele combina análise de dados técnicos com uma abordagem profundamente empática, didática e livre de julgamentos.
 
 ---
 
-## O Que Você Deve Entregar
+## 🎯 Visão Geral
 
-### 1. Documentação do Agente
+### O Problema
+Muitas pessoas sofrem com a "ansiedade financeira" e a falta de clareza sobre o destino do seu dinheiro. O medo do julgamento e o uso de termos técnicos complexos ("economês") afastam o usuário comum da organização de suas contas, gerando um ciclo de endividamento.
 
-Defina **o que** seu agente faz e **como** ele funciona:
-
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
-
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
+### A Solução
+O FinEasy atua como um organizador proativo que analisa transações reais para identificar gargalos e recomendar estratégias de saneamento (como o método bola de neve ou a regra 50/30/20). Ele oferece acolhimento para reduzir o estresse e prevenir o superendividamento através de tecnologia humanizada.
 
 ---
 
-### 2. Base de Conhecimento
+## 🤖 Persona e Tom de Voz
 
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
-
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
+* **Nome:** FinEasy.
+* **Personalidade:** Mentor compreensivo, educativo e extremamente paciente.
+* **Tom de Voz:** Acessível e **jamais julgador**. Entende que gastar é humano, mas ajuda a retomar o controle.
+* **Regras de Ouro:**
+    * Basear respostas estritamente nos dados financeiros fornecidos.
+    * **Não fornece recomendações de investimento** (Ações, Cripto, FIIs).
+    * Nunca solicita senhas ou dados sensíveis.
+    * Foco em ações práticas (ex: sugerir reduções específicas em categorias de lazer/delivery).
 
 ---
 
-### 3. Prompts do Agente
+## 🛠️ Arquitetura e Dados
 
-Documente os prompts que definem o comportamento do seu agente:
+O sistema utiliza arquivos locais para contextualizar cada atendimento, garantindo que a IA conheça o histórico e o perfil do usuário:
 
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
-
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
-
----
-
-### 4. Aplicação Funcional
-
-Desenvolva um **protótipo funcional** do seu agente:
-
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
-
-📁 **Pasta:** [`src/`](./src/)
+| Arquivo | Formato | Finalidade |
+| :--- | :--- | :--- |
+| `transacoes.csv` | CSV | Análise do padrão real de gastos e identificação de excessos. |
+| `perfil_investidor.json` | JSON | Personalização do tom de voz e das metas educativas. |
+| `historico_atendimento.csv`| CSV | Continuidade do atendimento e contexto de conversas passadas. |
+| `produtos_financeiros.json`| JSON | Sugestão de produtos focados em organização e reserva de segurança. |
 
 ---
 
-### 5. Avaliação e Métricas
+## 🚀 Instalação e Configuração
 
-Descreva como você avalia a qualidade do seu agente:
+Siga os passos abaixo para configurar o ambiente do FinEasy em sua máquina:
 
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
+### 1. Pré-requisitos
+* Python 3.9 ou superior.
+* Uma chave de API de um provedor de LLM (OpenAI, Anthropic ou Google Gemini).
 
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
+### 2. Clonar o Repositório
+```bash
+git clone [https://github.com/seu-usuario/fineasy.git](https://github.com/seu-usuario/fineasy.git)
+cd fineasy
 
----
+# Criar o ambiente
+python -m venv venv
 
-### 6. Pitch
+# Ativar o ambiente (Windows)
+.\venv\Scripts\activate
 
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
+# Ativar o ambiente (Linux/Mac)
+source venv/bin/activate
 
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
-
----
-
-## Ferramentas Sugeridas
-
-Todas as ferramentas abaixo possuem versões gratuitas:
-
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
-
----
-
-## Estrutura do Repositório
-
-```
-📁 lab-agente-financeiro/
-│
-├── 📄 README.md
-│
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
-│
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
-│
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
-│
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
-│
-└── 📁 examples/                      # Referências e exemplos
-    └── README.md
-```
-
----
-
-## Dicas Finais
-
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+pip install pandas streamlit openai  # Adicione outras libs se houver (ex: google-generativeai)
